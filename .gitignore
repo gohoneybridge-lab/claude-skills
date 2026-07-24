@@ -1,0 +1,7 @@
+# Never ship demo media or Python bytecode with the skills
+**/assets/
+**/__pycache__/
+*.pyc
+
+# OS cruft
+.DS_Store

@@ -1,0 +1,95 @@
+# rubric.yaml — the checkable definition of "golden industry standard"
+#
+# This file IS the product. SKILL.md is choreography around it.
+# Every item is pass/fail from evidence — if a human can't tick the box by
+# looking at the code or spec, it does NOT belong here (it's an opinion, not
+# a rubric item). Keep it that way.
+#
+# Scoring: each item is PASS / FAIL / N-A. `evidence` tells the checker where
+# to look. `via` names an existing skill that can adjudicate the item (the
+# skill orchestrates these instead of reinventing the check). `severity`
+# orders the "fix these first" list.
+#
+# version bumps: when you change what "golden" means, bump `version` so past
+# hardened builds aren't silently re-judged against a moved goalpost.
+
+version: 1
+updated: 2026-07-07
+
+# ---------------------------------------------------------------------------
+# UNIVERSAL CORE — applies to every stack. Always scored.
+# ---------------------------------------------------------------------------
+core:
+  - id: core.tests
+    check: "Automated tests exist and cover the primary user-facing paths."
+    evidence: "test files present (*.test.*, *_test.*, tests/); CI runs them."
+    via: verify
+    severity: high
+
+  - id: core.ci_gated
+    check: "CI is automated, gated, and reproducible — lint + typecheck + test + build run on every push and block merge on failure."
+    evidence: ".github/workflows/*.yml (or equivalent) with those steps; branch protection or a required check."
+    severity: high
+
+  - id: core.docs
+    check: "A README documents what it is, how to run it locally, and how to deploy."
+    evidence: "README.md with setup + run + deploy sections."
+    severity: medium
+
+  - id: core.security_basics
+    check: "No secrets in the repo; inputs are validated; authz is enforced server-side, not just in the UI."
+    evidence: ".env.example (not .env) committed; no hardcoded keys; server-side auth checks."
+    via: security-check
+    severity: high
+
+  - id: core.observability
+    check: "The Four Golden Signals are observable — latency, traffic, errors, saturation — via structured logs and/or metrics."
+    evidence: "a logging/metrics module; error tracking wired; not bare console.log in hot paths."
+    severity: medium
+
+  - id: core.rollback
+    check: "A rollback strategy exists and is written down (tested, not imagined)."
+    evidence: "ROLLBACK.md or deploy docs describing how to revert a bad release."
+    severity: medium
+
+# ---------------------------------------------------------------------------
+# STACK ADD-ONS — scored only for the matching stack (from the "web or other?"
+# answer). v1 ships the `web` block scoreable AND scaffoldable; other blocks
+# are scoreable now, scaffoldable later.
+# ---------------------------------------------------------------------------
+addons:
+  web:
+    - id: web.security_headers
+      check: "Baseline security headers are set — CSP, HSTS, X-Content-Type-Options, Referrer-Policy, frame protection."
+      evidence: "next.config headers(), middleware, or platform config."
+      via: security-check
+      severity: high
+
+    - id: web.owasp_asvs
+      check: "Meets an OWASP ASVS 5.0 L1 subset — session handling, access control, and injection defenses."
+      evidence: "auth flow, parameterized queries / ORM, CORS rules."
+      via: security-check
+      severity: high
+
+    - id: web.accessibility
+      check: "WCAG 2.2 AA baseline — semantic landmarks, labeled controls, color contrast, keyboard nav; a11y check runs in CI."
+      evidence: "no obvious a11y violations; axe/lint-a11y in CI."
+      via: web-design-guidelines
+      severity: medium
+
+    - id: web.core_web_vitals
+      check: "Core Web Vitals are addressed — LCP image handling, no layout shift (CLS), INP-conscious interactions."
+      evidence: "next/image or sized media; no unsized hero; no blocking main-thread work."
+      via: ui-ux-pro-max
+      severity: medium
+
+    - id: web.responsive
+      check: "Layout works from ~360px to desktop; no horizontal body scroll."
+      evidence: "responsive units / breakpoints; tested at small width."
+      via: web-design-guidelines
+      severity: low
+
+  # Placeholder stacks — scoreable via the core block today; add specific
+  # items + a scaffold template when you actually build in these stacks.
+  game: []   # e.g. Roblox/Luau: server-authoritative checks, no client-trust exploits
+  cli: []    # e.g. exit codes, --help, no destructive default, stdin/stdout contract

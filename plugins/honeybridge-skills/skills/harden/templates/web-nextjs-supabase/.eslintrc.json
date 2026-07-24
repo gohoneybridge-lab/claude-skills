@@ -1,0 +1,5 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"],
+  "comment": "web.accessibility — jsx-a11y runs in lint, so CI blocks on a11y regressions. next/core-web-vitals adds CWV lint rules."
+}

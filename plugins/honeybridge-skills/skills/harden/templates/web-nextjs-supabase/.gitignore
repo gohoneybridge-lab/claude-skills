@@ -1,0 +1,10 @@
+# core.security_basics — never commit real secrets or build junk.
+.env
+.env.local
+.env*.local
+node_modules/
+.next/
+out/
+npm-debug.log*
+.DS_Store
+coverage/

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "honeybridge",
+  "description": "Honey Bridge's internal Claude Code skills — idea-to-shipped-to-proven pipeline",
+  "owner": {
+    "name": "Honey Bridge"
+  },
+  "plugins": [
+    {
+      "name": "honeybridge-skills",
+      "description": "The Honey Bridge workflow pack: finalize an idea into a spec, research it, pressure-test it, harden it to production grade, hand it off, and prove it works.",
+      "source": "./plugins/honeybridge-skills",
+      "author": {
+        "name": "Honey Bridge"
+      },
+      "category": "productivity"
+    }
+  ]
+}
