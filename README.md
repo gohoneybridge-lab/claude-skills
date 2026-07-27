@@ -50,7 +50,7 @@ No hardcoded machine paths — everything resolves per-user via `~` / env vars.
 ## Maintaining this repo (Maaz)
 
 The skills here are **copies** of `~/.claude/skills/<name>`. To update one after you've
-edited it locally, or to add `prove-it` once its edit is done:
+edited it locally:
 
 ```
 ./scripts/sync-skills.sh            # re-sync all 6

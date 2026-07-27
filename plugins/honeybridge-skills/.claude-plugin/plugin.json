@@ -1,7 +1,7 @@
 {
   "name": "honeybridge-skills",
   "description": "The Honey Bridge workflow pack: /finalize an idea into a council-hardened spec, /last30days research, /llm-council pressure-testing, /harden to production grade, /handoff between sessions, and /prove-it to verify what was built.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Honey Bridge"
   },
