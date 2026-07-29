@@ -29,10 +29,10 @@ To update later when Maaz pushes changes:
 | **last30days** | Researches what people actually say about a topic in the last 30 days (Reddit, X, YouTube, TikTok, HN, web…). |
 | **llm-council** | Runs a question/decision through 5 AI advisors who peer-review and synthesize a verdict. |
 | **harden** | Takes an approved spec (or a repo) and elevates it to production grade — scores against a rubric and hands you a runnable scaffold. |
-| **handoff** | Writes a session handoff file so the next session picks up with full context. |
+| **handoff** | Writes a session handoff file so the next session picks up with full context, then closes the loop: runs `prove-it` on its assumed items, fixes what came back broken, re-verifies the fixes, and rewrites the handoff with a record of what it got wrong. `/handoff quick` skips the loop. |
 | **prove-it** | Forces every "assumed working" item in a handoff to prove it actually works, with evidence. |
 
-The pipeline: **finalize** (what) → **harden** (how well + skeleton) → build → **handoff** / **prove-it** (verify).
+The pipeline: **finalize** (what) → **harden** (how well + skeleton) → build → **handoff** (which drives **prove-it** to verify and fix).
 
 ## Prerequisites / setup notes
 
