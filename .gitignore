@@ -5,3 +5,11 @@
 
 # OS cruft
 .DS_Store
+
+# Session state, handoffs and captured evidence — never commit. THIS REPO IS PUBLIC.
+# These hold client context, DB rows, API internals and internal session notes
+# (prove-it / autopilot write them per-run; handoffs describe unshipped work).
+.claude/
+
+# Local working instructions for Claude — internal, not part of the distributed plugin.
+CLAUDE.md
