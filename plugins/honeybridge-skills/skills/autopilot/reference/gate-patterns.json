@@ -1,0 +1,46 @@
+{
+  "_comment": "Class 0 = irreversible. These HARD STOP mid-run during an autopilot run. Everything here must be something the operator cannot undo himself in under 5 minutes. A project can override by placing its own copy at .claude/autopilot-gates.json (same shape, replaces this file wholesale).",
+  "version": 1,
+
+  "class0_bash_patterns": [
+    { "re": "\\bgit\\s+push\\b", "why": "publishes commits to a remote others pull from" },
+    { "re": "\\bgh\\s+pr\\s+merge\\b", "why": "merges a pull request" },
+    { "re": "\\bgh\\s+release\\s+create\\b", "why": "publishes a release" },
+    { "re": "\\bgh\\s+api\\b.*-X\\s*(POST|PUT|PATCH|DELETE)", "why": "writes to GitHub via API" },
+    { "re": "\\bvercel\\b(?!.*\\b(ls|list|inspect|logs|env\\s+pull|whoami)\\b)", "why": "may deploy or mutate a live Vercel project" },
+    { "re": "\\brailway\\s+up\\b", "why": "deploys to Railway" },
+    { "re": "\\bnetlify\\s+deploy\\b.*--prod", "why": "deploys to production" },
+    { "re": "\\b(npm|pnpm|yarn)\\s+publish\\b", "why": "publishes a package to a public registry" },
+    { "re": "\\bsupabase\\s+db\\s+(push|reset)\\b", "why": "mutates a live database schema" },
+    { "re": "\\b(DROP\\s+TABLE|TRUNCATE\\s+TABLE|DELETE\\s+FROM)\\b", "why": "destroys database rows" },
+    { "re": "\\brm\\s+-[a-zA-Z]*[rR][a-zA-Z]*f|\\brm\\s+-[a-zA-Z]*f[a-zA-Z]*[rR]", "why": "recursive force delete" },
+    { "re": "\\bterraform\\s+(apply|destroy)\\b", "why": "mutates real infrastructure" },
+    { "re": "\\bkubectl\\s+(apply|delete)\\b", "why": "mutates a live cluster" },
+    { "re": "\\bstripe\\b", "why": "touches payment/billing state. DELIBERATELY BROAD - it fires on any mention of the word, including comments. A 2026-07-29 attempt to anchor it to command position introduced ~20 false negatives (sudo/npx/env-prefixed/absolute-path/xargs/backtick/multi-line stripe), so it was reverted. Over-firing costs a spurious queue row; under-firing costs live billing state. Do not narrow this without testing those forms." },
+    { "re": "\\b(sendmail|mailx|swaks)\\b", "why": "sends mail" },
+    { "re": "resend\\.com|api\\.sendgrid\\.com|api\\.mailgun", "why": "sends a client-facing email" },
+    { "re": "\\bgit\\s+reset\\s+--hard\\b", "why": "discards uncommitted work irrecoverably" }
+  ],
+
+  "class0_tools": [
+    { "tool": "mcp__claude-in-chrome__computer", "why": "drives a real browser; may click publish on a live client property" },
+    { "tool": "mcp__claude-in-chrome__form_input", "why": "types into a real form on a live property" },
+    { "tool": "mcp__claude-in-chrome__file_upload", "why": "uploads to a live property" },
+    { "tool": "mcp__claude-in-chrome__javascript_tool", "why": "executes arbitrary script against a live page" },
+    { "tool": "mcp__claude_ai_Google_Drive__create_file", "why": "writes to the agency Drive" },
+    { "tool": "mcp__plugin_vercel_vercel__deploy_to_vercel", "why": "deploys to Vercel" },
+    { "tool": "mcp__plugin_vercel_vercel__buy_domain", "why": "spends money" },
+    { "tool": "mcp__plugin_vercel_vercel__buy_pro", "why": "spends money" },
+    { "tool": "mcp__plugin_vercel_vercel__buy_credits", "why": "spends money" },
+    { "tool": "mcp__plugin_vercel_vercel__buy_addon", "why": "spends money" }
+  ],
+
+  "_read_only_browser_tools_are_fine": [
+    "mcp__claude-in-chrome__read_page",
+    "mcp__claude-in-chrome__get_page_text",
+    "mcp__claude-in-chrome__tabs_context_mcp",
+    "mcp__claude-in-chrome__find",
+    "mcp__claude-in-chrome__read_console_messages",
+    "mcp__claude-in-chrome__read_network_requests"
+  ]
+}
