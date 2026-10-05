@@ -95,7 +95,7 @@ First work out your **best-guess directory** so you can offer it as the
 default: it's the project the session's work actually lives in — normally the
 current working directory, but if the work is in a subproject (a repo checked
 out under it, the folder the edited files are in), use that folder's root. If
-the working directory is the home root (`/Users/maazshaikh`) but the work
+the working directory is the home root (`~`) but the work
 clearly belongs to a specific project, guess that project instead.
 
 Then ask the user (use the `AskUserQuestion` tool), presenting your best
@@ -106,7 +106,7 @@ directory is the target for the rest of these steps, including the Step 4
 continuity pointer.
 
 Guard: never write the handoff at the home directory root
-(`/Users/maazshaikh`) or another non-project location. If your best guess
+(`~`) or another non-project location. If your best guess
 comes out to home, surface that in the question rather than defaulting to it.
 
 ## Step 3: Write `.claude/HANDOFF.md` in the chosen directory (pass 1)
@@ -173,7 +173,7 @@ of the same project folder you wrote `.claude/HANDOFF.md` into (create it
 there if none exists). It must live right next to the handoff it points at.
 
 **Never write this pointer into a general/home/user-level CLAUDE.md** —
-specifically not `~/CLAUDE.md` (`/Users/maazshaikh/CLAUDE.md`) or
+specifically not `~/CLAUDE.md` (`~/CLAUDE.md`) or
 `~/.claude/CLAUDE.md`. Those load in every session across every directory, so
 a handoff pointer there is noise for every unrelated project. If the project
 directory *is* your home directory, revisit Step 2's guard instead of writing

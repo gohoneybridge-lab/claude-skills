@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Caveat, 'Bradley Hand', 'Marker Felt', cursive">
+  <!-- flow: <id> | metaphor: <one line> -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&amp;display=swap');</style>
+  <defs>
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="ao" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#e8740c" stroke-width="2.2" stroke-linecap="round"/></marker>
+    <marker id="ar" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#d23a2a" stroke-width="2.2" stroke-linecap="round"/></marker>
+    <marker id="ab" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#1f5fbf" stroke-width="2.2" stroke-linecap="round"/></marker>
+    <marker id="ak" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto-start-reverse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/></marker>
+
+    <g id="bee-body">
+      <path d="M40 52 C22 34 12 48 24 58 C31 63 37 59 40 55" fill="#fff" stroke="#111" stroke-width="2.4"/>
+      <path d="M80 49 C98 31 108 45 96 56 C89 61 83 58 80 53" fill="#fff" stroke="#111" stroke-width="2.4"/>
+      <path d="M52 39 C48 28 45 23 40 20" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="39.5" cy="19.5" r="2.8" fill="#111"/>
+      <path d="M67 38 C71 27 74 22 79 19" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="79.5" cy="18.5" r="2.8" fill="#111"/>
+      <path d="M60 36 C83 35 88 60 86 78 C84 96 75 104 60 104 C45 105 34 96 33 80 C31 60 38 37 60 36 Z" fill="#111"/>
+      <path d="M38 84 C50 89 71 89 84 82" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M42 94 C54 98 68 98 79 92" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="51" cy="62" r="5.2" fill="#fff"/><circle cx="68" cy="61" r="5.2" fill="#fff"/>
+      <path d="M51 104 L49 124 L42 125 M69 104 L71 124 L78 125" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- paste the pose <symbol> you need from ~/.claude/hb-log/brain/art/bee-poses.svg here -->
+  </defs>
+
+  <rect width="1600" height="900" fill="#fff"/>
+
+  <!-- objects: one group, wobble on -->
+  <g filter="url(#wobble)" fill="none" stroke="#111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  </g>
+
+  <!-- Bee doing the core action (feet land at y + height*125/140) -->
+  <use href="#bee-POSE" x="600" y="330" width="300" height="280" filter="url(#wobble)"/>
+
+  <!-- arrows: orange flow (ao), red gate (ar), blue loop (ab, dashed), black plain (ak) -->
+  <g filter="url(#wobble)" fill="none" stroke-width="3.2" stroke-linecap="round">
+  </g>
+
+  <!-- labels: 8 max, 5 words max -->
+  <g font-size="33">
+  </g>
+</svg>

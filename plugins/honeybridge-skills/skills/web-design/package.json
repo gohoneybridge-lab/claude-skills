@@ -1,0 +1,11 @@
+{
+  "name": "web-design",
+  "version": "1.0.0",
+  "description": "Prove phase for the /web-design skill — responsive, a11y, motion-budget and reduced-motion gates.",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "playwright": "^1.61.1",
+    "pngjs": "^7.0.0"
+  }
+}
