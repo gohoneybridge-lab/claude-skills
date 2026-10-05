@@ -78,3 +78,10 @@ names, domains, accounts and personal paths in the copies, then `scripts/check-p
 which fails the sync if anything identifying is left. Add a rule to `sanitize.py` rather than
 editing a copy by hand, since the next sync would overwrite the hand edit. Run
 `./scripts/check-public.sh` again before every push.
+
+## License
+
+MIT, see [LICENSE](LICENSE). Bundled third-party code keeps its own license and attribution:
+- `last30days` is from [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) (MIT, see `third_party/last30days-LICENSE`).
+- Its vendored `bird-search` is a subset of `@steipete/bird` (MIT, see its own `LICENSE`).
+- `hb-explainer` is adapted from an MIT-licensed upstream (see `hb-explainer/LICENSE.upstream` and `NOTICE.md`).
